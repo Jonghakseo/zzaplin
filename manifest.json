@@ -1,0 +1,47 @@
+{
+  "name": "Ryan's ZZaplin",
+  "version": "1.0",
+  "description": "Layout visualizer like a Zeplin",
+  "permissions": [
+    "declarativeContent"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "css": [
+        "main.css"
+      ],
+      "js": [
+        "jquery.js",
+        "main.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "options_page": "options.html",
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/zzaplin16.png",
+      "32": "images/zzaplin32.png",
+      "48": "images/zzaplin48.png",
+      "128": "images/zzaplin128.png"
+    }
+  },
+  "icons": {
+    "16": "images/zzaplin16.png",
+    "32": "images/zzaplin32.png",
+    "48": "images/zzaplin48.png",
+    "128": "images/zzaplin128.png"
+  },
+  "manifest_version": 2
+}
