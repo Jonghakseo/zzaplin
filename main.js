@@ -14,12 +14,12 @@ const ignoreValues = [0, "0", "0px", "none", "initial", undefined, null];
 
 // ! 찾을 스타일 밸류들( 추가해야 함 )
 const styleValues = [
-  "border",
-  "borderRadius",
   "fontSize",
   "lineHeight",
   "color",
   "backgroundColor",
+  "border",
+  "borderRadius",
   "paddingTop",
   "paddingLeft",
   "paddingRight",
@@ -32,6 +32,26 @@ const styleValues = [
 
 // ! 패딩, 마진 값이 없을 경우
 const NONE = "0px";
+
+//? rgb to hex code
+const rgb2hex = (input) => {
+  const searchIndex = input.search("rgb");
+  if (searchIndex === -1) {
+    return input;
+  } else {
+    let rgb = input.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+))?\)$/);
+    function hex(x) {
+      return ("0" + parseInt(x).toString(16)).slice(-2);
+    }
+    if (!rgb) {
+      return input;
+    }
+    return (
+      input.substr(0, searchIndex) +
+      ("#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3])).toString()
+    );
+  }
+};
 
 const makeNormalBorders = (body) => {
   // ? 기본 패딩영역 포함한 보더라인
@@ -207,6 +227,12 @@ window.onload = function () {
   $(".zTop").css("width", $(document).width());
   $(".zBottom").css("width", $(document).width());
 
+  // ! on / off 상태 보는 박스
+  const onOffBox = $('<div id="onOffStatusBox"/>')[0];
+  const onBox = () => $(onOffBox).css("opacity", "0.8");
+  const offBox = () => $(onOffBox).css("opacity", "0");
+  body.append(onOffBox);
+
   // ! 이벤트 연속 추가를 막기 위한 변수
 
   // ? 기본 기능 켜고 끄기
@@ -217,6 +243,7 @@ window.onload = function () {
       if (!isOnDefault) {
         initZZaplin = true;
         isOnDefault = true;
+        onBox();
         $(body).on("mouseover", handleMouseOverOnDefault);
       }
     }
@@ -225,6 +252,7 @@ window.onload = function () {
   $(document).keyup((e) => {
     if (e.key === KEY_TOGGLE_FUNCTION) {
       isOnDefault = false;
+      offBox();
       $(body).off("mouseover", handleMouseOverOnDefault);
     }
   });
@@ -237,6 +265,7 @@ window.onload = function () {
       if (!isOnSecond) {
         initZZaplinSecond = true;
         isOnSecond = true;
+        onBox();
         $(body).on("mousemove", handleMouseOverOnSecond);
       }
     }
@@ -245,6 +274,7 @@ window.onload = function () {
   $(document).keyup((e) => {
     if (e.key === KEY_TOGGLE_SECOND_FUNCTION) {
       isOnSecond = false;
+      offBox();
       $(body).off("mousemove", handleMouseOverOnSecond);
     }
   });
@@ -361,7 +391,7 @@ window.onload = function () {
     }
   };
 
-  // ? default 모드에서 마진 보더 생성
+  // ? default 마진 보더 생성
   const setMarginBorderDefault = (
     top,
     left,
@@ -658,7 +688,8 @@ window.onload = function () {
     } = setBorderLines(target, MODE_DEFAULT);
     // ! 스타일 정보 배열로 가져오고 합침 -> 추가
     const inlineStyleArray = getStyleInfo(target);
-    const styleArray = computedStyleArray.concat(inlineStyleArray);
+    inlineStyleArray.push({ styleName: "----", styleValue: "----" });
+    const styleArray = inlineStyleArray.concat(computedStyleArray);
 
     makeInfoBox(target, height, width, styleArray);
     setInfoBoxPosition(e);
@@ -682,20 +713,27 @@ window.onload = function () {
     } = setBorderLines(target, MODE_SECOND);
     // ! 스타일 정보 배열로 가져오고 합침 -> 추가
     const inlineStyleArray = getStyleInfo(target);
-    const styleArray = computedStyleArray.concat(inlineStyleArray);
+    inlineStyleArray.push({ styleName: "----", styleValue: "----" });
+    const styleArray = inlineStyleArray.concat(computedStyleArray);
     makeInfoBox(target, height, width, styleArray);
     setInfoBoxPosition(e);
     getDistance();
   };
 
-  // ? 인포박스 만들기
+  // ? 인포 박스 만들기
   const makeInfoBox = (target, height, width, styleArray) => {
     // ! 태그 네임 추가
     $(infoBoxTagName).text(target.tagName);
     // ! 사이즈 정보 추가
-    $(infoBoxSizes).text(`H: ${height.toFixed(1)}px\nW: ${width.toFixed(1)}px`);
+    // ? 들어온 픽셀 단위 검사 후 문제 없으면 소수점 빼고 리턴
+    height = height.toFixed(1).replace(".0", "");
+    width = width.toFixed(1).replace(".0", "");
+    const sizeText = `H: ${height}px\nW: ${width}px`;
+    $(infoBoxSizes).text(sizeText);
     // ! 스타일 요소 비우고
     $(infoBoxStyles).empty();
+
+    styleArray = makeShortHand(styleArray);
 
     styleArray.map(({ styleName, styleValue }) => {
       return $(infoBoxStyles).append(
@@ -704,7 +742,7 @@ window.onload = function () {
     });
   };
 
-  // ? 인포박스 포지션 설정
+  // ? 인포 박스 포지션 설정
   const setInfoBoxPosition = (e) => {
     // ! 내용이 삽입됨 인포박스 높이 구함
     const infoBoxHeight = parseInt(
@@ -742,6 +780,7 @@ window.onload = function () {
     $(infoBox).css("top", pointerY);
   };
 
+  // ? 거리 계산
   const getDistance = () => {
     if (initZZaplin && initZZaplinSecond) {
       $(infoBoxDistance).empty();
@@ -851,7 +890,87 @@ window.onload = function () {
     }
   };
 
+  // ? PX 단위 제거
   const removeUnitPx = (item) => {
     return Math.round(Number(item.replace("px", "")));
+  };
+
+  // ? 마진 패딩 숏핸드 속성 만들기 + 색상 코드 변환
+  const makeShortHand = (styleArray) => {
+    let mt = "0px",
+      mr = "0px",
+      ml = "0px",
+      mb = "0px";
+    let pt = "0px",
+      pr = "0px",
+      pl = "0px",
+      pb = "0px";
+
+    const shortArr = [];
+
+    styleArray.map(({ styleName, styleValue }) => {
+      if (styleName === "border" && styleValue.split(" ").includes("none"))
+        return;
+      const newValue = rgb2hex(styleValue);
+
+      switch (styleName) {
+        case "marginTop":
+          mt = styleValue;
+          break;
+        case "marginRight":
+          mr = styleValue;
+          break;
+        case "marginLeft":
+          ml = styleValue;
+          break;
+        case "marginBottom":
+          mb = styleValue;
+          break;
+        case "paddingTop":
+          pt = styleValue;
+          break;
+        case "paddingLeft":
+          pl = styleValue;
+          break;
+        case "paddingRight":
+          pr = styleValue;
+          break;
+        case "paddingBottom":
+          pb = styleValue;
+          break;
+        default:
+          shortArr.push({ styleName, styleValue: newValue });
+      }
+    });
+
+    const marginValue = () => {
+      if (new Set([mt, mb, mr, ml]).size === 1) {
+        return mt;
+      }
+      if (mt === mb && mr === ml) {
+        return `${mt} ${mr}`;
+      }
+      return `${mt} ${mr} ${ml} ${mb}`;
+    };
+
+    const paddingValue = () => {
+      if (new Set([pt, pb, pr, pl]).size === 1) {
+        return pt;
+      }
+      if (pt === pb && pr === pl) {
+        return `${pt} ${pr}`;
+      }
+      return `${pt} ${pr} ${pl} ${pb}`;
+    };
+
+    shortArr.push({
+      styleName: "margin",
+      styleValue: marginValue(),
+    });
+    shortArr.push({
+      styleName: "padding",
+      styleValue: paddingValue(),
+    });
+    return shortArr;
   };
 };

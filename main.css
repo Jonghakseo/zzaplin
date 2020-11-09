@@ -3,7 +3,7 @@
     z-index: 55555;
     position: absolute;
     display: none;
-    font-family: montserrat,"JetBrains Mono", sans-serif;
+    font-family: montserrat,"JetBrains Mono", sans-serif !important;
 }
 
 .zTop {
@@ -136,7 +136,7 @@
 
 #infoBoxTagName {
     color: cadetblue;
-    font-size: 2rem;
+    font-size: 28px;
     font-weight: bold;
     margin-right: 5px;
 }
@@ -169,4 +169,15 @@
     display: block;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+#onOffStatusBox{
+    position: fixed;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: dodgerblue;
 }
