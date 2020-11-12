@@ -1,10 +1,10 @@
 // ! 키 정의
-const KEY_TOGGLE_FUNCTION = "z" || "Z" || "ㅋ";
-const KEY_TOGGLE_SECOND_FUNCTION = "x" || "X" || "ㅌ";
-const KEY_CLEAR = "c" || "C" || "ㅊ";
-const KEY_FIX_INFO_BOX = "h" || "H" || "ㅗ";
-const KEY_HIDE_INFO_BOX = "v" || "V" || "ㅍ";
-const KEY_TOGGLE_PX = "b" || "B" || "ㅠ";
+const KEY_TOGGLE_FUNCTION = 90 //"z" || "Z" || "ㅋ";
+const KEY_TOGGLE_SECOND_FUNCTION = 88// "x" || "X" || "ㅌ";
+const KEY_CLEAR = 67// "c" || "C" || "ㅊ";
+const KEY_FIX_INFO_BOX = 72//"h" || "H" || "ㅗ";
+const KEY_HIDE_INFO_BOX = 86; // V
+const KEY_TOGGLE_PX = 66/"b" || "B" || "ㅠ";
 
 const MODE_DEFAULT = "default";
 const MODE_SECOND = "second";
@@ -222,10 +222,20 @@ window.onload = function () {
   const { ydLine, xdLine } = makeDistanceLine(body);
 
   // ! 보더 높이 너비 초기화
-  $(".zLeft").css("height", $(document).height());
-  $(".zRight").css("height", $(document).height());
-  $(".zTop").css("width", $(document).width());
-  $(".zBottom").css("width", $(document).width());
+  const adjustBorderSize = () =>{
+    console.log('call')
+    $(".zLeft").css("height", $(document).height());
+    $(".zRight").css("height", $(document).height());
+    $(".zTop").css("width", $(document).width());
+    $(".zBottom").css("width", $(document).width());
+  }
+
+  adjustBorderSize();
+
+  $(window).resize(function (){
+        adjustBorderSize()
+  });
+
 
   // ! on / off 상태 보는 박스
   const onOffBox = $('<div id="onOffStatusBox"/>')[0];
@@ -238,8 +248,8 @@ window.onload = function () {
   // ? 기본 기능 켜고 끄기
   let initZZaplin = false;
   let isOnDefault = false;
-  $(document).keydown((e) => {
-    if (e.key === KEY_TOGGLE_FUNCTION) {
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_TOGGLE_FUNCTION) {
       if (!isOnDefault) {
         initZZaplin = true;
         isOnDefault = true;
@@ -249,8 +259,8 @@ window.onload = function () {
     }
   });
 
-  $(document).keyup((e) => {
-    if (e.key === KEY_TOGGLE_FUNCTION) {
+  $(window).keyup((e) => {
+    if (e.keyCode === KEY_TOGGLE_FUNCTION) {
       isOnDefault = false;
       offBox();
       $(body).off("mouseover", handleMouseOverOnDefault);
@@ -260,8 +270,8 @@ window.onload = function () {
   // ? 두 번째 보더 기능 켜고 끄기
   let isOnSecond = false;
   let initZZaplinSecond = false;
-  $(document).keydown((e) => {
-    if (e.key === KEY_TOGGLE_SECOND_FUNCTION) {
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_TOGGLE_SECOND_FUNCTION) {
       if (!isOnSecond) {
         initZZaplinSecond = true;
         isOnSecond = true;
@@ -271,8 +281,8 @@ window.onload = function () {
     }
   });
 
-  $(document).keyup((e) => {
-    if (e.key === KEY_TOGGLE_SECOND_FUNCTION) {
+  $(window).keyup((e) => {
+    if (e.keyCode === KEY_TOGGLE_SECOND_FUNCTION) {
       isOnSecond = false;
       offBox();
       $(body).off("mousemove", handleMouseOverOnSecond);
@@ -280,8 +290,8 @@ window.onload = function () {
   });
 
   // ? 보더, 인포박스 전체 제거
-  $(document).keydown((e) => {
-    if (e.key === KEY_CLEAR) {
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_CLEAR) {
       $(infoBoxDistance).empty();
       clearAll();
       initZZaplinSecond = false;
@@ -291,8 +301,8 @@ window.onload = function () {
 
   // ? px 토글
   let showPx = true;
-  $(document).keydown((e) => {
-    if (e.key === KEY_TOGGLE_PX) {
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_TOGGLE_PX) {
       if (showPx) {
         showPx = !showPx;
         togglePx(showPx);
@@ -305,8 +315,8 @@ window.onload = function () {
 
   let floatingInfoBox = true;
   // ? 인포박스 고정
-  $(document).keydown((e) => {
-    if (e.key === KEY_FIX_INFO_BOX) {
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_FIX_INFO_BOX) {
       if (floatingInfoBox) {
         floatingInfoBox = !floatingInfoBox;
         $(infoBox).addClass("fixed");
@@ -320,8 +330,8 @@ window.onload = function () {
 
   let hideInfoBox = false;
   // ? 인포박스 가리기
-  $(document).keydown((e) => {
-    if (e.key === KEY_HIDE_INFO_BOX) {
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_HIDE_INFO_BOX) {
       if (!hideInfoBox) {
         hideInfoBox = !hideInfoBox;
         $(infoBox).addClass("hide");
