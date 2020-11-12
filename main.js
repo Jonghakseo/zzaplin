@@ -223,7 +223,6 @@ window.onload = function () {
 
   // ! 보더 높이 너비 초기화
   const adjustBorderSize = () =>{
-    console.log('call')
     $(".zLeft").css("height", $(document).height());
     $(".zRight").css("height", $(document).height());
     $(".zTop").css("width", $(document).width());
