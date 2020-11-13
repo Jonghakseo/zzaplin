@@ -1,10 +1,10 @@
 // ! 키 정의
-const KEY_TOGGLE_FUNCTION = 90 //"z" || "Z" || "ㅋ";
-const KEY_TOGGLE_SECOND_FUNCTION = 88// "x" || "X" || "ㅌ";
-const KEY_CLEAR = 67// "c" || "C" || "ㅊ";
-const KEY_FIX_INFO_BOX = 72//"h" || "H" || "ㅗ";
+const KEY_TOGGLE_FUNCTION = 90; //"z" || "Z" || "ㅋ";
+const KEY_TOGGLE_SECOND_FUNCTION = 88; // "x" || "X" || "ㅌ";
+const KEY_CLEAR = 67; // "c" || "C" || "ㅊ";
+const KEY_FIX_INFO_BOX = 72; //"h" || "H" || "ㅗ";
 const KEY_HIDE_INFO_BOX = 86; // V
-const KEY_TOGGLE_PX = 66/"b" || "B" || "ㅠ";
+const KEY_TOGGLE_PX = 66; //"b" || "B" || "ㅠ";
 
 const MODE_DEFAULT = "default";
 const MODE_SECOND = "second";
@@ -222,19 +222,18 @@ window.onload = function () {
   const { ydLine, xdLine } = makeDistanceLine(body);
 
   // ! 보더 높이 너비 초기화
-  const adjustBorderSize = () =>{
+  const adjustBorderSize = () => {
     $(".zLeft").css("height", $(document).height());
     $(".zRight").css("height", $(document).height());
     $(".zTop").css("width", $(document).width());
     $(".zBottom").css("width", $(document).width());
-  }
+  };
 
   adjustBorderSize();
 
-  $(window).resize(function (){
-        adjustBorderSize()
+  $(window).resize(function () {
+    adjustBorderSize();
   });
-
 
   // ! on / off 상태 보는 박스
   const onOffBox = $('<div id="onOffStatusBox"/>')[0];
