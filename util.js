@@ -254,6 +254,7 @@ const getStyleInfo = (e) => {
 
 // ? layout guide line 보여주기
 const showDomGuidLine = (toggle) => {
+  clearAll();
   const layoutElements = $("div, section, aside, header, footer, article");
 
   if (toggle) {
