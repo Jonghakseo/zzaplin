@@ -5,6 +5,9 @@
     display: none;
     font-family: montserrat,"JetBrains Mono", sans-serif !important;
 }
+.zzap {
+    z-index: 55555;
+}
 
 .zTop {
     left: 0;
