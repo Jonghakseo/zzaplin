@@ -22,6 +22,9 @@
       ],
       "js": [
         "jquery.js",
+        "constants.js",
+        "maker.js",
+        "util.js",
         "main.js"
       ],
       "run_at": "document_end"
