@@ -2,7 +2,7 @@ const body = $(document.body)[0];
 // ! 보더들 생성해서 선언
 const { bTop, bLeft, bRight, bBottom } = makeNormalBorders(body);
 const { bpTop, bpLeft, bpRight, bpBottom } = makePaddingBorders(body);
-const { bmTop, bmBottom, bmLeft, bmRight } = makeMakrginBorders(body);
+const { bmTop, bmBottom, bmLeft, bmRight } = makeMarginBorders(body);
 
 // ! 인포박스 생성 후 선언
 const {
@@ -16,7 +16,7 @@ const {
 // ! 두 번째 보더들 생성해서 선언
 const { bsTop, bsRight, bsLeft, bsBottom } = makeNormalBordersSecond(body);
 const { bpsTop, bpsBottom, bpsLeft, bpsRight } = makePaddingBordersSecond(body);
-const { bmsBottom, bmsLeft, bmsRight, bmsTop } = makeMakrginBordersSecond(body);
+const { bmsBottom, bmsLeft, bmsRight, bmsTop } = makeMarginBordersSecond(body);
 
 // ! 거리 재는 라인
 const { ydLine, xdLine } = makeDistanceLine(body);
@@ -100,16 +100,18 @@ $(document).ready(function () {
     }
   });
 
-  // ? px 토글
-  let showPx = true;
+  // ? div 가이드라인 토글
+  let showGL = true;
   $(window).keydown((e) => {
-    if (e.keyCode === KEY_TOGGLE_PX) {
-      if (showPx) {
-        showPx = !showPx;
-        togglePx(showPx);
+    if (e.keyCode === KEY_TOGGLE_GUIDE_LINE) {
+      if (showGL) {
+        showDomGuidLine(showGL);
+        showGL = !showGL;
+        togglePx(showGL);
       } else {
-        showPx = !showPx;
-        togglePx(showPx);
+        showDomGuidLine(showGL);
+        showGL = !showGL;
+        togglePx(showGL);
       }
     }
   });
@@ -163,7 +165,7 @@ $(document).ready(function () {
     inlineStyleArray.push({ styleName: "----", styleValue: "----" });
     const styleArray = inlineStyleArray.concat(computedStyleArray);
 
-    makeInfoBox(target, height, width, styleArray);
+    setInfoBox(target, height, width, styleArray);
     setInfoBoxPosition(e);
     getDistance();
   };
@@ -187,13 +189,13 @@ $(document).ready(function () {
     const inlineStyleArray = getStyleInfo(target);
     inlineStyleArray.push({ styleName: "----", styleValue: "----" });
     const styleArray = inlineStyleArray.concat(computedStyleArray);
-    makeInfoBox(target, height, width, styleArray);
+    setInfoBox(target, height, width, styleArray);
     setInfoBoxPosition(e);
     getDistance();
   };
 
   // ? 인포 박스 만들기
-  const makeInfoBox = (target, height, width, styleArray) => {
+  const setInfoBox = (target, height, width, styleArray) => {
     // ! 태그 네임 추가
     $(infoBoxTagName).text(target.tagName);
     // ! 사이즈 정보 추가

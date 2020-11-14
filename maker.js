@@ -69,7 +69,7 @@ const makePaddingBordersSecond = (body) => {
   return { bpsTop, bpsBottom, bpsLeft, bpsRight };
 };
 
-const makeMakrginBorders = (body) => {
+const makeMarginBorders = (body) => {
   // ? 마진 영역을 보여주기 위한 보더라인
   const makeMarginBorder = (id, cls) => {
     return `<div id=${id} class='zzaplin marginBorder ${cls}'></div>`;
@@ -87,7 +87,7 @@ const makeMakrginBorders = (body) => {
   return { bmTop, bmBottom, bmLeft, bmRight };
 };
 
-const makeMakrginBordersSecond = (body) => {
+const makeMarginBordersSecond = (body) => {
   // ? 마진 영역을 보여주기 위한 보더라인
   const makeMarginBorder = (id, cls) => {
     return `<div id=${id} class='zzaplin marginBorderSecond ${cls}'></div>`;
@@ -108,11 +108,15 @@ const makeMakrginBordersSecond = (body) => {
 // ? 인포박스 생성
 const makeInfobox = (body) => {
   const infoBox = $('<div id="zInfoBox" class="zzaplin"></div>')[0];
-  const infoBoxHeader = $('<section id="infoBoxHeader"></section>')[0];
-  const infoBoxDistance = $('<section id="infoBoxDistance"></section>')[0];
-  const infoBoxTagName = $('<div id="infoBoxTagName"></div>')[0];
-  const infoBoxSizes = $('<div id="infoBoxSizes"></div>')[0];
-  const infoBoxStyles = $('<div id="infoBoxStyles"></div>')[0];
+  const infoBoxHeader = $(
+    '<section id="infoBoxHeader" class="zzap"></section>'
+  )[0];
+  const infoBoxDistance = $(
+    '<section id="infoBoxDistance" class="zzap"></section>'
+  )[0];
+  const infoBoxTagName = $('<div id="infoBoxTagName" class="zzap"></div>')[0];
+  const infoBoxSizes = $('<div id="infoBoxSizes" class="zzap"></div>')[0];
+  const infoBoxStyles = $('<div id="infoBoxStyles" class="zzap"></div>')[0];
   $(infoBox)
     .append($(infoBoxHeader))
     .append($(infoBoxDistance))

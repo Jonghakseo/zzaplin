@@ -110,12 +110,7 @@ const clearAll = () => {
 // ? 짭플린 요소인지 확인
 const isZzaplin = (target) => {
   try {
-    if (target.className) {
-      if (target.className.split(" ")[0] === "zzaplin") {
-        return true;
-      }
-    }
-    return false;
+    return !!($(target).hasClass("zzaplin") || $(target).hasClass("zzap"));
   } catch (e) {
     return false;
   }
@@ -255,4 +250,69 @@ const getStyleInfo = (e) => {
     }
   });
   return styleArray;
+};
+
+// ? layout guide line 보여주기
+const showDomGuidLine = (toggle) => {
+  const layoutElements = $("div, section, aside, header, footer, article");
+
+  if (toggle) {
+    const allElements = $("*");
+
+    let tags = {};
+    allElements.each((ind, item) => {
+      if (!isZzaplin(item)) {
+        const tagName = $(item).prop("tagName");
+        if (Object.keys(tags).includes(tagName)) {
+          tags[tagName]++;
+        } else {
+          tags[tagName] = 1;
+        }
+      }
+    });
+
+    let tagArr = Object.keys(tags).map((item, index) => {
+      const value = tags[item];
+      return { tagName: item, count: value };
+    });
+
+    tagArr.sort((a, b) => {
+      return b.count - a.count;
+    });
+
+    $(infoBox).addClass("fixed");
+    $(infoBoxTagName).text(`DOM : ${allElements.length}`);
+    $(infoBoxSizes).empty();
+    $(infoBoxStyles).empty();
+    tagArr.map(({ tagName, count }) => {
+      return $(infoBoxStyles).append(
+        `<section class='zzaplin zInfoStyleRow'><div>${tagName}</div><div>${count}</div></section>`
+      );
+    });
+    $(infoBox).css("display", "flex");
+
+    $(layoutElements).each((ind, item) => {
+      if (!isZzaplin(item)) {
+        if ($(item).css("position") === "static") {
+          $(item).css("position", "relative");
+          $(item).addClass("static");
+        }
+        $(item).append(
+          `<figcaption id="gl_ind_${ind}" class="guideLine"></figcaption>`
+        );
+        const glItem = $(`#gl_ind_${ind}`);
+        $(glItem).width($(item).outerWidth() - 2);
+        $(glItem).height($(item).outerHeight() - 2);
+      }
+    });
+  } else {
+    $(infoBox).removeClass("fixed");
+    $(infoBox).css("display", "none");
+    $(layoutElements).each((ind, item) => {
+      if ($(item).hasClass("static")) {
+        $(item).css("position", "static");
+      }
+    });
+    $(".guideLine").remove();
+  }
 };

@@ -118,7 +118,7 @@
     top: 0 !important;
     left: 0 !important;
     position: fixed !important;
-    opacity: 0.7 !important;
+    opacity: 0.85 !important;
 }
 
 .hide {
@@ -180,4 +180,15 @@
     height: 15px;
     border-radius: 100%;
     background-color: dodgerblue;
+}
+
+.guideLine{
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    border: solid 1px rgba(0,128,255,0.7) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
