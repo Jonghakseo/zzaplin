@@ -284,6 +284,7 @@ const showDomGuidLine = (toggle) => {
     $(infoBoxTagName).text(`DOM : ${allElements.length}`);
     $(infoBoxSizes).empty();
     $(infoBoxStyles).empty();
+    $(infoBoxDistance).empty();
     tagArr.map(({ tagName, count }) => {
       return $(infoBoxStyles).append(
         `<section class='zzaplin zInfoStyleRow'><div>${tagName}</div><div>${count}</div></section>`
