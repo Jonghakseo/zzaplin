@@ -1,3 +1,24 @@
+let isZZaplinOn = true;
+
+chrome.storage.sync.get("toggle", function (result) {
+  if (result.toggle) {
+    isZZaplinOn = true;
+  } else {
+    isZZaplinOn = false;
+  }
+});
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  // console.log(request);
+  if (!request.toggle) {
+    isZZaplinOn = false;
+    clearAll();
+    showDomGuidLine(false);
+  } else if (request.toggle) {
+    isZZaplinOn = true;
+  }
+});
+
 const body = $(document.body)[0];
 // ! 보더들 생성해서 선언
 const { bTop, bLeft, bRight, bBottom } = makeNormalBorders(body);
@@ -35,6 +56,7 @@ $(document).ready(function () {
 
   // ? 리사이즈시에 보더 사이즈 조정
   $(window).resize(function () {
+    console.log(isZZaplinOn);
     adjustBorderSize();
   });
 
@@ -50,7 +72,7 @@ $(document).ready(function () {
   let initZZaplin = false;
   let isOnDefault = false;
   $(window).keydown((e) => {
-    if (e.keyCode === KEY_TOGGLE_FUNCTION) {
+    if (e.keyCode === KEY_TOGGLE_FUNCTION && isZZaplinOn) {
       if (!isOnDefault) {
         initZZaplin = true;
         isOnDefault = true;
@@ -72,7 +94,7 @@ $(document).ready(function () {
   let isOnSecond = false;
   let initZZaplinSecond = false;
   $(window).keydown((e) => {
-    if (e.keyCode === KEY_TOGGLE_SECOND_FUNCTION) {
+    if (e.keyCode === KEY_TOGGLE_SECOND_FUNCTION && isZZaplinOn) {
       if (!isOnSecond) {
         initZZaplinSecond = true;
         isOnSecond = true;
@@ -92,7 +114,7 @@ $(document).ready(function () {
 
   // ? 보더, 인포박스 전체 제거
   $(window).keydown((e) => {
-    if (e.keyCode === KEY_CLEAR) {
+    if (e.keyCode === KEY_CLEAR && isZZaplinOn) {
       $(infoBoxDistance).empty();
       clearAll();
       initZZaplinSecond = false;
@@ -103,7 +125,7 @@ $(document).ready(function () {
   // ? div 가이드라인 토글
   let showGL = true;
   $(window).keydown((e) => {
-    if (e.keyCode === KEY_TOGGLE_GUIDE_LINE) {
+    if (e.keyCode === KEY_TOGGLE_GUIDE_LINE && isZZaplinOn) {
       if (showGL) {
         showDomGuidLine(showGL);
         showGL = !showGL;
@@ -119,7 +141,7 @@ $(document).ready(function () {
   let floatingInfoBox = true;
   // ? 인포박스 고정
   $(window).keydown((e) => {
-    if (e.keyCode === KEY_FIX_INFO_BOX) {
+    if (e.keyCode === KEY_FIX_INFO_BOX && isZZaplinOn) {
       if (floatingInfoBox) {
         floatingInfoBox = !floatingInfoBox;
         $(infoBox).addClass("fixed");
@@ -134,7 +156,7 @@ $(document).ready(function () {
   let hideInfoBox = false;
   // ? 인포박스 가리기
   $(window).keydown((e) => {
-    if (e.keyCode === KEY_HIDE_INFO_BOX) {
+    if (e.keyCode === KEY_HIDE_INFO_BOX && isZZaplinOn) {
       if (!hideInfoBox) {
         hideInfoBox = !hideInfoBox;
         $(infoBox).addClass("hide");
