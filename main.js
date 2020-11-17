@@ -17,6 +17,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   } else if (request.toggle) {
     isZZaplinOn = true;
   }
+  return true;
 });
 
 const body = $(document.body)[0];
