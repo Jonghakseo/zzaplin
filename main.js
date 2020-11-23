@@ -57,7 +57,7 @@ $(document).ready(function () {
 
   // ? 리사이즈시에 보더 사이즈 조정
   $(window).resize(function () {
-    console.log(isZZaplinOn);
+    // console.log(isZZaplinOn);
     adjustBorderSize();
   });
 
