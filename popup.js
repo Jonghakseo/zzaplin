@@ -51,3 +51,25 @@ try {
 } catch (e) {
   console.log(e);
 }
+
+// const fucn = async () => {
+//   const fData = new FormData();
+//   fData.append("singer", "신세계");
+//   fData.append("songName", "1");
+//   fData.append("song_url", "https://www.youtube.com/watch?v=5SLDIgev8zI");
+//   fData.append("song_code", "5SLDIgev8zI");
+//   try {
+//     const res = await fetch("https://unqocn-api.hopto.org/namu/1", {
+//       method: "post",
+//       headers: new Headers(),
+//       body: fData,
+//     });
+//     console.log(res);
+//   } finally {
+//   }
+// };
+//
+// setTimeout(()=>{
+//   fucn()
+// }, 2000)
+// // fucn();
