@@ -117,7 +117,7 @@
     z-index: 99999;
 }
 
-.fixed {
+.zzapfix {
     top: 0 !important;
     left: 0 !important;
     position: fixed !important;
@@ -195,3 +195,4 @@
     background-color: transparent !important;
     box-shadow: none !important;
 }
+

@@ -281,7 +281,7 @@ const showDomGuidLine = (toggle) => {
       return b.count - a.count;
     });
 
-    $(infoBox).addClass("fixed");
+    $(infoBox).addClass("zzapfix");
     $(infoBoxTagName).text(`DOM : ${allElements.length}`);
     $(infoBoxSizes).empty();
     $(infoBoxStyles).empty();
@@ -308,7 +308,7 @@ const showDomGuidLine = (toggle) => {
       }
     });
   } else {
-    $(infoBox).removeClass("fixed");
+    $(infoBox).removeClass("zzapfix");
     $(infoBox).css("display", "none");
     $(layoutElements).each((ind, item) => {
       if ($(item).hasClass("static")) {

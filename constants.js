@@ -2,6 +2,7 @@
 const KEY_TOGGLE_FUNCTION = 90; //"z" || "Z" || "ㅋ";
 const KEY_TOGGLE_SECOND_FUNCTION = 88; // "x" || "X" || "ㅌ";
 const KEY_CLEAR = 67; // "c" || "C" || "ㅊ";
+const KEY_TOGGLE = 84; // "c" || "C" || "ㅊ";
 const KEY_FIX_INFO_BOX = 72; //"h" || "H" || "ㅗ";
 const KEY_HIDE_INFO_BOX = 86; // V
 const KEY_TOGGLE_GUIDE_LINE = 66; //"b" || "B" || "ㅠ";

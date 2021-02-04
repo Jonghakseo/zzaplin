@@ -106,7 +106,7 @@ $(document).ready(function () {
   });
 
   $(window).keyup((e) => {
-    if (e.keyCode === KEY_TOGGLE_SECOND_FUNCTION) {
+    if (e.keyCode === KEY_TOGGLE_SECOND_FUNCTION && isZZaplinOn) {
       isOnSecond = false;
       offBox();
       $(body).off("mousemove", handleMouseOverOnSecond);
@@ -115,7 +115,7 @@ $(document).ready(function () {
 
   // ? 보더, 인포박스 전체 제거
   $(window).keydown((e) => {
-    if (e.keyCode === KEY_CLEAR && isZZaplinOn) {
+    if (e.keyCode === KEY_CLEAR) {
       $(infoBoxDistance).empty();
       clearAll();
       initZZaplinSecond = false;
@@ -123,9 +123,23 @@ $(document).ready(function () {
     }
   });
 
+  // ? 짭플린 켜고 끄기
+  $(window).keydown((e) => {
+    if (e.target.nodeName === "INPUT") return ;
+    if (e.keyCode === KEY_TOGGLE) {
+      $(infoBoxDistance).empty();
+      clearAll();
+      initZZaplinSecond = false;
+      initZZaplin = false;
+      isZZaplinOn = !isZZaplinOn
+      console.log("짭플린 토글",isZZaplinOn)
+    }
+  });
+
   // ? div 가이드라인 토글
   let showGL = true;
   $(window).keydown((e) => {
+    if (e.target.nodeName === "INPUT") return ;
     if (e.keyCode === KEY_TOGGLE_GUIDE_LINE && isZZaplinOn) {
       if (showGL) {
         showDomGuidLine(showGL);
@@ -145,10 +159,10 @@ $(document).ready(function () {
     if (e.keyCode === KEY_FIX_INFO_BOX && isZZaplinOn) {
       if (floatingInfoBox) {
         floatingInfoBox = !floatingInfoBox;
-        $(infoBox).addClass("fixed");
+        $(infoBox).addClass("zzapfix");
       } else {
         floatingInfoBox = !floatingInfoBox;
-        $(infoBox).removeClass("fixed");
+        $(infoBox).removeClass("zzapfix");
         $(infoBox).removeClass("hide");
       }
     }

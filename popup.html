@@ -3,31 +3,85 @@
 <head>
     <meta charset="utf-8">
     <title>popup</title>
+    <style>
+        .zzapKey{
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .popupRow{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: solid 1px #22222288;
+            padding: 8px;
+        }
+    </style>
 </head>
 <body style="white-space: nowrap; padding: 10px; font-family: sans-serif; line-height: 1.6;">
 <h2>짭플린 단축키</h2>
-<div style="display: flex; flex-direction: column">
-    <div><label for="toggleButton"></label><input id="toggleButton" type="checkbox" > 기능 활성화 / 비 활성화 (On/Off)</div>
-    <div>
+<div style="display: flex; flex-direction: column; width: 240px">
+    <div style="padding-bottom: 20px"><label for="toggleButton"></label><input id="toggleButton" type="checkbox" > 기능 활성화 / 비 활성화 (On/Off)</div>
+
+
+    <div class="popupRow">
+        <div class="zzapKey">Z</div>
+        <div style="text-align: end">
         요소 측정<br>
-        Measure Element : Z
+        Measure Element</div>
     </div>
-    <div>
-        두 번째 요소, 거리 재기<br>
-        Measure SecondElement and getDistance : X
+
+    <div class="popupRow">
+        <div class="zzapKey">X</div>
+        <div style="text-align: end">
+            두 번째 요소 측정, 거리 재기<br>
+            Measure 2nd Element & getDistance</div>
+
     </div>
-    <div>
-        지우기<br>Clear : C
+
+    <div class="popupRow">
+        <div class="zzapKey">C</div>
+        <div style="text-align: end">
+            지우기<br>
+            Clear All</div>
+
     </div>
-    <div>
-        요소 정보 고정/해제<br>Element InfoBox Toggle Fix : H
+
+
+    <div class="popupRow">
+        <div class="zzapKey">H</div>
+        <div style="text-align: end">
+            요소 정보 고정/해제<br>
+            InfoBox Toggle Fix</div>
+
     </div>
-    <div>
-        요소 정보 숨김/보임<br>Element InfoBox Toggle Hide : V
+
+    <div class="popupRow">
+        <div class="zzapKey">V</div>
+        <div style="text-align: end">
+            요소 정보 숨김/보임<br>
+            InfoBox Toggle Hide</div>
+
     </div>
-    <div>
-        페이지 레이아웃 숨김/보임<br>Layout Border Toggle : B
+
+    <div class="popupRow">
+        <div class="zzapKey">B</div>
+        <div style="text-align: end">
+            페이지 레이아웃 숨김/보임<br>
+            Layout Border Toggle</div>
+
     </div>
+
+
+
+    <div class="popupRow">
+        <div class="zzapKey">T</div>
+        <div style="text-align: end">
+            짭플린 on/off<br>
+            on/off Toggle</div>
+
+    </div>
+
+
     <p>(C) 2020. RYAN all rights reserved.</p>
 </div>
 
