@@ -69,118 +69,7 @@ $(document).ready(function () {
 
   // ! 이벤트 연속 추가를 막기 위한 변수
 
-  // ? 기본 기능 켜고 끄기
-  let initZZaplin = false;
-  let isOnDefault = false;
-  $(window).keydown((e) => {
-    if (e.keyCode === KEY_TOGGLE_FUNCTION && isZZaplinOn) {
-      if (!isOnDefault) {
-        initZZaplin = true;
-        isOnDefault = true;
-        onBox();
-        $(body).on("mouseover", handleMouseOverOnDefault);
-      }
-    }
-  });
 
-  $(window).keyup((e) => {
-    if (e.keyCode === KEY_TOGGLE_FUNCTION) {
-      isOnDefault = false;
-      offBox();
-      $(body).off("mouseover", handleMouseOverOnDefault);
-    }
-  });
-
-  // ? 두 번째 보더 기능 켜고 끄기
-  let isOnSecond = false;
-  let initZZaplinSecond = false;
-  $(window).keydown((e) => {
-    if (e.keyCode === KEY_TOGGLE_SECOND_FUNCTION && isZZaplinOn) {
-      if (!isOnSecond) {
-        initZZaplinSecond = true;
-        isOnSecond = true;
-        onBox();
-        $(body).on("mousemove", handleMouseOverOnSecond);
-      }
-    }
-  });
-
-  $(window).keyup((e) => {
-    if (e.keyCode === KEY_TOGGLE_SECOND_FUNCTION && isZZaplinOn) {
-      isOnSecond = false;
-      offBox();
-      $(body).off("mousemove", handleMouseOverOnSecond);
-    }
-  });
-
-  // ? 보더, 인포박스 전체 제거
-  $(window).keydown((e) => {
-    if (e.keyCode === KEY_CLEAR) {
-      $(infoBoxDistance).empty();
-      clearAll();
-      initZZaplinSecond = false;
-      initZZaplin = false;
-    }
-  });
-
-  // ? 짭플린 켜고 끄기
-  $(window).keydown((e) => {
-    if (e.target.nodeName === "INPUT") return ;
-    if (e.keyCode === KEY_TOGGLE) {
-      $(infoBoxDistance).empty();
-      clearAll();
-      initZZaplinSecond = false;
-      initZZaplin = false;
-      isZZaplinOn = !isZZaplinOn
-      console.log("짭플린 토글",isZZaplinOn)
-    }
-  });
-
-  // ? div 가이드라인 토글
-  let showGL = true;
-  $(window).keydown((e) => {
-    if (e.target.nodeName === "INPUT") return ;
-    if (e.keyCode === KEY_TOGGLE_GUIDE_LINE && isZZaplinOn) {
-      if (showGL) {
-        showDomGuidLine(showGL);
-        showGL = !showGL;
-        togglePx(showGL);
-      } else {
-        showDomGuidLine(showGL);
-        showGL = !showGL;
-        togglePx(showGL);
-      }
-    }
-  });
-
-  let floatingInfoBox = true;
-  // ? 인포박스 고정
-  $(window).keydown((e) => {
-    if (e.keyCode === KEY_FIX_INFO_BOX && isZZaplinOn) {
-      if (floatingInfoBox) {
-        floatingInfoBox = !floatingInfoBox;
-        $(infoBox).addClass("zzapfix");
-      } else {
-        floatingInfoBox = !floatingInfoBox;
-        $(infoBox).removeClass("zzapfix");
-        $(infoBox).removeClass("hide");
-      }
-    }
-  });
-
-  let hideInfoBox = false;
-  // ? 인포박스 가리기
-  $(window).keydown((e) => {
-    if (e.keyCode === KEY_HIDE_INFO_BOX && isZZaplinOn) {
-      if (!hideInfoBox) {
-        hideInfoBox = !hideInfoBox;
-        $(infoBox).addClass("hide");
-      } else {
-        hideInfoBox = !hideInfoBox;
-        $(infoBox).removeClass("hide");
-      }
-    }
-  });
 
   // ? defualt 마우스 오버시 측정 시작
   const handleMouseOverOnDefault = (e) => {
@@ -373,4 +262,119 @@ $(document).ready(function () {
       }
     }
   };
+
+  //* 기능섹션 *//
+
+  // ? 기본 기능 켜고 끄기
+  let initZZaplin = false;
+  let isOnDefault = false;
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_TOGGLE_FUNCTION && isZZaplinOn) {
+      if (!isOnDefault) {
+        initZZaplin = true;
+        isOnDefault = true;
+        onBox();
+        $(body).on("mouseover", handleMouseOverOnDefault);
+      }
+    }
+  });
+
+  $(window).keyup((e) => {
+    if (e.keyCode === KEY_TOGGLE_FUNCTION && isZZaplinOn) {
+      isOnDefault = false;
+      offBox();
+      $(body).off("mouseover", handleMouseOverOnDefault);
+    }
+  });
+
+  // ? 두 번째 보더 기능 켜고 끄기
+  let isOnSecond = false;
+  let initZZaplinSecond = false;
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_TOGGLE_SECOND_FUNCTION && isZZaplinOn) {
+      if (!isOnSecond) {
+        initZZaplinSecond = true;
+        isOnSecond = true;
+        onBox();
+        $(body).on("mousemove", handleMouseOverOnSecond);
+      }
+    }
+  });
+
+  $(window).keyup((e) => {
+    if (e.keyCode === KEY_TOGGLE_SECOND_FUNCTION && isZZaplinOn) {
+      isOnSecond = false;
+      offBox();
+      $(body).off("mousemove", handleMouseOverOnSecond);
+    }
+  });
+
+  // ? 보더, 인포박스 전체 제거
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_CLEAR) {
+      $(infoBoxDistance).empty();
+      clearAll();
+      initZZaplinSecond = false;
+      initZZaplin = false;
+    }
+  });
+
+  // // ? 짭플린 켜고 끄기
+  // $(window).onkeyup((e) => {
+  //   if (e.target.nodeName === "INPUT") return ;
+  //   if (e.keyCode === KEY_TOGGLE) {
+  //     $(infoBoxDistance).empty();
+  //     clearAll();
+  //     initZZaplinSecond = false;
+  //     initZZaplin = false;
+  //     isZZaplinOn = !isZZaplinOn
+  //     console.log("짭플린 토글",isZZaplinOn)
+  //   }
+  // });
+
+  // ? div 가이드라인 토글
+  let showGL = true;
+  $(window).keydown((e) => {
+    if (e.target.nodeName === "INPUT") return ;
+    if (e.keyCode === KEY_TOGGLE_GUIDE_LINE && isZZaplinOn) {
+      if (showGL) {
+        showDomGuidLine(showGL);
+        showGL = !showGL;
+        togglePx(showGL);
+      } else {
+        showDomGuidLine(showGL);
+        showGL = !showGL;
+        togglePx(showGL);
+      }
+    }
+  });
+
+  let floatingInfoBox = true;
+  // ? 인포박스 고정
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_FIX_INFO_BOX && isZZaplinOn) {
+      if (floatingInfoBox) {
+        floatingInfoBox = !floatingInfoBox;
+        $(infoBox).addClass("zzapfix");
+      } else {
+        floatingInfoBox = !floatingInfoBox;
+        $(infoBox).removeClass("zzapfix");
+        $(infoBox).removeClass("hide");
+      }
+    }
+  });
+
+  let hideInfoBox = false;
+  // ? 인포박스 가리기
+  $(window).keydown((e) => {
+    if (e.keyCode === KEY_HIDE_INFO_BOX && isZZaplinOn) {
+      if (!hideInfoBox) {
+        hideInfoBox = !hideInfoBox;
+        $(infoBox).addClass("hide");
+      } else {
+        hideInfoBox = !hideInfoBox;
+        $(infoBox).removeClass("hide");
+      }
+    }
+  });
 });
