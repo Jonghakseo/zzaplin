@@ -95,12 +95,15 @@
     left: 50%;
     top: 50%;
     z-index: 66666;
-    display: flex;
+    position:absolute;
+    display: inline-block;
     padding: 2px;
     margin: 1px;
     background: white;
     box-shadow: 2px 2px 5px rgba(22, 22, 22, 0.25);
     border-radius: 2px;
+
+    transform: translate(-50%, -50%);
 }
 
 #zInfoBox {
@@ -142,6 +145,11 @@
     font-size: 28px;
     font-weight: bold;
     margin-right: 5px;
+}
+
+#infoBoxClassName {
+    color: cornflowerblue;
+    font-size: 12px;
 }
 
 #infoBoxSizes {

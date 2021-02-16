@@ -1,4 +1,4 @@
-let isZZaplinOn = true;
+let isZZaplinOn = undefined;
 
 chrome.storage.sync.get("toggle", function (result) {
   if (result.toggle) {
@@ -32,6 +32,7 @@ const {
   infoBoxTagName,
   infoBoxDistance,
   infoBoxSizes,
+  infoBoxClassName,
   infoBoxStyles,
 } = makeInfobox(body);
 
@@ -124,6 +125,8 @@ $(document).ready(function () {
   const setInfoBox = (target, height, width, styleArray) => {
     // ! 태그 네임 추가
     $(infoBoxTagName).text(target.tagName);
+    // ! 클래스 네임 추가
+    $(infoBoxClassName).text(target.className);
     // ! 사이즈 정보 추가
     // ? 들어온 픽셀 단위 검사 후 문제 없으면 소수점 빼고 리턴
     height = height.toFixed(1).replace(".0", "");

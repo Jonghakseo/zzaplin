@@ -11,10 +11,13 @@ const MODE_DEFAULT = "default";
 const MODE_SECOND = "second";
 
 // ! 무시할 밸류들
-const ignoreValues = [0, "0", "0px", "none", "initial", undefined, null];
+const ignoreValues = [0, "0", "0px", "none", "initial","inherit", undefined, null];
 
 // ! 찾을 스타일 밸류들( 추가해야 함 )
 const styleValues = [
+  "display",
+  "flex",
+  "fontFamily",
   "fontSize",
   "lineHeight",
   "color",

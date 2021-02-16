@@ -114,12 +114,16 @@ const makeInfobox = (body) => {
   const infoBoxDistance = $(
     '<section id="infoBoxDistance" class="zzap"></section>'
   )[0];
+  const infoBoxClassName = $(
+    '<section id="infoBoxClassName" class="zzap"></section>'
+  )[0];
   const infoBoxTagName = $('<div id="infoBoxTagName" class="zzap"></div>')[0];
   const infoBoxSizes = $('<div id="infoBoxSizes" class="zzap"></div>')[0];
   const infoBoxStyles = $('<div id="infoBoxStyles" class="zzap"></div>')[0];
   $(infoBox)
     .append($(infoBoxHeader))
     .append($(infoBoxDistance))
+    .append($(infoBoxClassName))
     .append($(infoBoxStyles));
   $(infoBoxHeader).append($(infoBoxTagName)).append($(infoBoxSizes));
   // 인포박스 추가
@@ -129,6 +133,7 @@ const makeInfobox = (body) => {
     infoBoxHeader,
     infoBoxDistance,
     infoBoxTagName,
+    infoBoxClassName,
     infoBoxSizes,
     infoBoxStyles,
   };
