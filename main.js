@@ -319,6 +319,9 @@ $(document).ready(function () {
       clearAll();
       initZZaplinSecond = false;
       initZZaplin = false;
+      showGL = false;
+      showDomGuidLine(false);
+      togglePx(false);
     }
   });
 
