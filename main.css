@@ -91,7 +91,7 @@
     text-align: center;
 }
 
-.px {
+.zzaplin.px {
     left: 50%;
     top: 50%;
     z-index: 66666;
@@ -127,7 +127,7 @@
     opacity: 0.85 !important;
 }
 
-.hide {
+.zzaplin.hide {
     visibility: hidden !important;
     opacity: 0 !important;
 }
@@ -193,7 +193,7 @@
     background-color: dodgerblue;
 }
 
-.guideLine{
+.zzaplin.guideLine {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;

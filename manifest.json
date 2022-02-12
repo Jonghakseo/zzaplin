@@ -1,6 +1,6 @@
 {
   "name": "Ryan's ZZaplin",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Layout visualizer like a Zeplin",
   "permissions": [
     "storage",

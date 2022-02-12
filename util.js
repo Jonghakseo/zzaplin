@@ -300,7 +300,7 @@ const showDomGuidLine = (toggle) => {
           $(item).addClass("static");
         }
         $(item).append(
-          `<figcaption id="gl_ind_${ind}" class="guideLine"></figcaption>`
+          `<figcaption id="gl_ind_${ind}" class="zzap guideLine"></figcaption>`
         );
         const glItem = $(`#gl_ind_${ind}`);
         $(glItem).width($(item).outerWidth() - 2);

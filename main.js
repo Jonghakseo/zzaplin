@@ -1,11 +1,7 @@
-let isZZaplinOn = undefined;
+let isZZaplinOn = false;
 
 chrome.storage.sync.get("toggle", function (result) {
-  if (result.toggle) {
-    isZZaplinOn = true;
-  } else {
-    isZZaplinOn = false;
-  }
+  isZZaplinOn = !!result.toggle;
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
