@@ -34,10 +34,10 @@ It is an extension program that makes it easy to see the layout within the page 
 - style에 display와 flex, fontFamily 가 추가되었습니다.
 - 이제 infoBox에서 클래스명도 확인이 가능합니다.
 
-1.4.1 (21.2.16)
+1.4.1 (21.02.16)
 - 클리어 버튼(C)로 레이아웃 가이드라인(B)도 제거가 가능합니다.
 
-1.4.1 (22.2.12)
+1.4.1 (22.02.12)
 - css class 충돌 이슈 해결(ex. medium)
 ---
 
