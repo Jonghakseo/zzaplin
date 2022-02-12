@@ -7,13 +7,13 @@ It is an extension program that makes it easy to see the layout within the page 
 
 :: Release Note ::
 
-1.1 (20.11.14)
+1.1.0 (20.11.14)
 - 버그 수정 및 UI 개선, window resize에 대응
 
-1.2 (20.11.14)
+1.2.0 (20.11.14)
 - B키를 통해 DOM 객체 수와 태그 목록 볼 수 있는 기능 추가
 
-1.3 (20.11.17)
+1.3.0 (20.11.17)
 - on/off 기능 추가 및 버그 수정
 
 1.3.1 (20.11.23)
@@ -29,7 +29,7 @@ It is an extension program that makes it easy to see the layout within the page 
 1.3.3 (21.02.05)
 - 토글(T)버튼 삭제.
 
-1.4 (21.02.16)
+1.4.0 (21.02.16)
 - 마진과 패딩의 px 박스가 좀 더 자연스러운 위치로 이동했습니다.
 - style에 display와 flex, fontFamily 가 추가되었습니다.
 - 이제 infoBox에서 클래스명도 확인이 가능합니다.
